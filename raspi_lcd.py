@@ -4,10 +4,11 @@
 from __future__ import print_function
 
 import sys
+import time
 import smbus
 import unicodedata
 
-from config import BUS_NUMBER, LCD_ADDR
+from config import BUS_NUMBER, LCD_ADDR, SLEEP_TIME, DELAY_TIME
 from character_table import INITIALIZE_CODES, LINEBREAK_CODE, CHAR_TABLE
 
 COMMAND_ADDR = 0x00
@@ -24,6 +25,7 @@ class LCDController:
             self.bus.write_i2c_block_data(LCD_ADDR, DATA_ADDR, [command])
         else:
             self.bus.write_i2c_block_data(LCD_ADDR, COMMAND_ADDR, [command])
+        time.sleep(DELAY_TIME)
 
     def initialize_display(self):
         for code in INITIALIZE_CODES:
@@ -52,12 +54,12 @@ class LCDController:
     def display_one_line(self, line_no, message):
         message = self.normalize_message(message)
         char_code_list = self.convert_message(message)
-        print(char_code_list)
         for code in char_code_list:
             self.send_command(code)
 
     def display_messages(self, message_list):
         self.initialize_display()
+        time.sleep(SLEEP_TIME)
         for line_no, message in enumerate(message_list):
             if line_no == 1:
                 self.send_linebreak()
