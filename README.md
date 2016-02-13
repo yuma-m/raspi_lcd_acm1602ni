@@ -2,10 +2,11 @@
 
 This package contains LCD controller for Raspberry Pi.
 
-- LCD (ACM1602NI-FLW-FBW-M01)
-- Raspberry Pi 2 Model B
-- Raspberry Pi A/B+ (unconfirmed)
 - Raspbian Jessie
+- Python 2.7
+- LCD (ACM1602NI-FLW-FBW-M01)
+- Raspberry Pi2 Model B
+- Raspberry Pi Model A/B+ (unconfirmed)
 
 ## Usage
 
@@ -15,9 +16,16 @@ $ sudo python raspi_lcd.py "Message for line 1" ["Message for line 2"]
 
 You have to enable I2C in advance. Please read Prerequisite section.
 
+### Displayable Characters
+
+- Half-width English numbers and letters
+- Full-width / half-width Katakana
+- Some special characters
+
+
 ## Configuration
 
-Set `BUS_NUMBER` and `LCD_ADDR` in `config.py`.
+If needed, edit `BUS_NUMBER` and `LCD_ADDR` in `config.py`.
 
 ## Prerequisite
 
@@ -29,7 +37,10 @@ Set `BUS_NUMBER` and `LCD_ADDR` in `config.py`.
 $ sudo raspi-config
 ```
 
-`9 Advanced Options` > `A7 I2C` > `Yes`
+1. Select `9 Advanced Options`
+1. Select `A7 I2C`
+1. Select `Yes` twice
+1. Reboot Raspberry Pi
 
 #### Install i2c-tools, python-smbus
 
@@ -52,6 +63,8 @@ Open `/boot/config.txt` and add line below.
 dtparam=i2c_baudrate=50000
 ```
 
+Reboot Raspberry Pi.
+
 ## Attention
 
-Do not use `i2cdetect` command. Read access to i2c bus causes hungging up of LCD(ACM1602NI).
+Do not use `i2cdetect` command when LCD(ACM1602NI) is connected. Read access to i2c bus will causes hungging up of LCD.
