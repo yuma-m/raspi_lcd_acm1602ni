@@ -45,6 +45,8 @@ class LCDController:
                 error_message = 'undefined character: %s' % (char.encode('utf-8'))
                 raise ValueError(error_message)
             char_code_list += CHAR_TABLE[char]
+        if len(char_code_list) > 16:
+            raise ValueError('Exceeds maximum length of characters for each line: 16')
         return char_code_list
 
     def display_one_line(self, line_no, message):
