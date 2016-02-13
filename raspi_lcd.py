@@ -42,7 +42,8 @@ class LCDController:
         char_code_list = []
         for char in message:
             if char not in CHAR_TABLE:
-                raise ValueError('undefined character: %s' % (char.encode('utf-8')))
+                error_message = 'undefined character: %s' % (char.encode('utf-8'))
+                raise ValueError(error_message)
             char_code_list += CHAR_TABLE[char]
         return char_code_list
 
