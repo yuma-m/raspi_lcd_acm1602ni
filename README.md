@@ -65,6 +65,10 @@ dtparam=i2c_baudrate=50000
 
 Reboot Raspberry Pi.
 
+### Breadboard wiring example
+
+![Breadboard wiring of ACM1602NI](/images/breadboard_wiring.jpg)
+
 ## Attention
 
 Do not use `i2cdetect` command when LCD(ACM1602NI) is connected. Read access to i2c bus will causes hungging up of LCD.
