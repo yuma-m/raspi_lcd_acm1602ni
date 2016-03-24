@@ -195,8 +195,8 @@ CHAR_TABLE = {
     u'万': [0xfb],
     u'円': [0xfc],
     u'÷': [0xfd],
-    u' ': [0xff],
-    u'　': [0xff],
+    u' ': [0xfe],
+    u'　': [0xfe],
     u'■': [0xff],
 
     u'ガ': [0xb6, 0xde],
